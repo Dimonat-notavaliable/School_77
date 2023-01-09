@@ -1,0 +1,147 @@
+﻿@model School_77.ViewModels.GradeIndexData
+@{ Layout = "~/Views/Shared/_LayoutTeacher.cshtml"; }
+@{
+    ViewBag.Title = "Журнал";
+}
+@{
+    string calendarRaw = Context.Request.QueryString["month"];
+    string SubjectID = Context.Request.QueryString["SubjectID"];
+    string CourseID = Context.Request.QueryString["CourseID"];
+    int year = 2022;
+    int month = 7;
+    List<DateTime> days = new List<DateTime>();
+    if (calendarRaw != null && calendarRaw.Length == 7)
+    {
+        year = Int32.Parse(calendarRaw.Substring(0, 4));
+        month = Int32.Parse(calendarRaw.Substring(5, 2));
+        for (int i = 1; i <= System.DateTime.DaysInMonth(year, month); i++)
+        {
+            DateTime day = new DateTime(year, month, i);
+            if ((day.DayOfWeek == DayOfWeek.Monday && Model.Monday.Any()) || (day.DayOfWeek == DayOfWeek.Tuesday && Model.Tuesday.Any()) ||
+                (day.DayOfWeek == DayOfWeek.Wednesday && Model.Wednesday.Any()) || (day.DayOfWeek == DayOfWeek.Thursday && Model.Thursday.Any()) ||
+                (day.DayOfWeek == DayOfWeek.Friday && Model.Friday.Any()))
+            {
+                days.Add(day);
+            }
+        }
+    }
+}
+<table border="0">
+    <tr>
+        <th><font size="5" color=#222>Журнал</font></th>
+    </tr>
+</table>
+<br />
+<form action="/Grades" method="get" id="BaseForm">
+    <input type="hidden" value=@Model.TeacherID name="id" />
+    <table class="select">
+        <tr>
+            <td>Класс:</td>
+            <td>@Html.DropDownList("CourseID", null, htmlAttributes: new { @class = "upper" })</td>
+        </tr>
+
+        <tr>
+            <td>Предмет:</td>
+            <td>@Html.DropDownList("SubjectID", null, htmlAttributes: new { @class = "upper" })</td>
+        </tr>
+        <tr>
+            <td>Месяц:</td>
+            <td>
+                <input type="month" name="month" value=@calendarRaw max="2022-12" min="2022-01">
+            </td>
+
+        </tr>
+
+    </table>
+    <p>
+
+        <input type="submit" value="Показать" />
+    </p>
+    <script>
+        document.querySelector("#CourseID").onchange = function (e) {
+            document.querySelector("#BaseForm").submit();
+        }
+    </script>
+</form>
+
+
+@if ((Model.Students != null) && !(string.IsNullOrEmpty(calendarRaw)) && !(string.IsNullOrEmpty(SubjectID)) && !(string.IsNullOrEmpty(CourseID)))
+{
+    <div class="main" id="table-wrapper">
+        <div id="table-scroll">
+            <table width="1200" border=2 class="table">
+                <tr>
+                    <th rowspan="2" id="FullName">Ф.И.О.</th>
+                    <th class="Data" colspan=@days.Count()>Дата</th>
+                </tr>
+                <tr>
+                    @foreach (DateTime item in days)
+                    {
+                        <th class="Day">
+                            @item.ToString("dd.MM")
+                        </th>
+                    }
+                </tr>
+                @foreach (var item in Model.Students)
+                {
+                    <tr>
+                        <td class="Name">
+                            @Html.DisplayFor(modelItem => item.Initials)
+                        </td>
+                        @foreach (DateTime grade in days)
+                        {
+                            if (Model.Grades.Where(x => x.Date == grade && x.StudentID == item.ID).Any())
+                            {
+                                using (Html.BeginForm("Edit", "Grades", FormMethod.Post))
+                                {
+                                    <input type="hidden" value=@Model.Grades.Where(x => x.Date == grade && x.StudentID == item.ID).SingleOrDefault().ID name="ID" />
+                                    <td class="Grade">
+                                        <select class="GradeSelect" name="value" onchange='this.form.submit()'>
+                                            <option value="0"></option>
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                if (i == Model.Grades.Where(x => x.Date == grade && x.StudentID == item.ID).SingleOrDefault().Value)
+                                                {
+                                                    <option selected value=@i>@i</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value=@i>@i</option>
+}
+                                            }
+                                        </select>
+                                    </td>
+
+                                }
+                            }
+                            else
+                            {
+                                using (Html.BeginForm("Create", "Grades", FormMethod.Post))
+                                {
+                                    <input type="hidden" value=@SubjectID name="subjectID" />
+                                    <input type="hidden" value=@item.ID name="studentId" />
+                                    <input type="hidden" value=@grade name="date" />
+                                    <td class="Grade">
+                                        <select class="GradeSelect" name="value" onchange='this.form.submit()'>
+                                            <option selected></option>
+                                            <option value=1>1</option>
+                                            <option value=2>2</option>
+                                            <option value=3>3</option>
+                                            <option value=4>4</option>
+                                            <option value=5>5</option>
+                                        </select>
+                                    </td>
+
+                                }
+                            }
+                        }
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+}
+<link rel="stylesheet" href="~/Content/grades.css">
+

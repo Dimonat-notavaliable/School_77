@@ -1,0 +1,15 @@
+﻿th a {
+    color: #FFFFFF;
+}
+th a:hover {
+    color: lightblue;
+}
+th {
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+td {
+    font-size: 15px;
+}

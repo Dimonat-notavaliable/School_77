@@ -1,0 +1,32 @@
+﻿@model School_77.ViewModels.ParentIndexData
+@{ Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+@{
+    ViewBag.Title = "Родители";
+}
+
+<h2>Список родителей</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            ФИО
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Parents)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.ActionLink("Подробнее", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+<link rel="stylesheet" href="~/Content/Parents.css">

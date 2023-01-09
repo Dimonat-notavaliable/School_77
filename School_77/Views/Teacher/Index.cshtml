@@ -1,0 +1,61 @@
+﻿@model School_77.ViewModels.TeacherIndexData
+@{ Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+@{
+    ViewBag.Title = "Учителя";
+}
+
+
+<h2>Список учителей</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<h3>Классные руководители</h3>
+<table class="table">
+    <tr>
+        <th>ФИО</th>
+        <th>Класс</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Form_tch)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Title)
+            </td>
+            <td>
+                @Html.ActionLink("Подробнее", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+</table>
+
+<h3>Учителя-предметники</h3>
+<table class="table">
+    <tr>
+        <th>ФИО</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Subject_tch)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.ActionLink("Подробнее", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+</table>
+
+<link rel="stylesheet" href="~/Content/course.css">

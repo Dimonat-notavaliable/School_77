@@ -1,0 +1,51 @@
+﻿@model School_77.Models.Teacher
+
+@{
+    ViewBag.Title = "Удалить";
+}
+<style type="text/css">
+    input[type=submit] {
+        color: #FFFFFF;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+        input[type=submit]:hover {
+            color: rgba(0, 0, 0, 0.8);
+            background-color: #FFFFFF;
+        }
+</style>
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены что хотите удалить?</h3>
+<div>
+    <h4>Учитель</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.Title)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Подтвердить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - School App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="~/Content/layout.css">
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="~/school.png" class="img-center" height="50" width="50" />
+                <a class="navbar-brand" href="/">School №77</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Дневник", "Student", "Schedule", new { id = 4 }, new { @class = "Link" })</li>
+                </ul>
+                <form id="login-drop" class="login navbar-right" action="/Home">
+                    <select class="drpdwn" id="LoginID" name="LoginID" onchange="this.form.submit()">
+                        <option value="0">Администратор - #### #. #.</option>
+                        <option value="47">Родитель - Баженов И. А.</option>
+                        <option value="4" selected="selected">Ученик - Попова А. А.</option>
+                        <option value="44">Учитель - Баранов А. Н.</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Tomsk Polytechnic University</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

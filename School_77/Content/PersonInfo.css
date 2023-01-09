@@ -1,0 +1,33 @@
+﻿#photo {
+    float: left;
+    width: 300px;
+    height: 300px;
+}
+.info {
+    height: 300px;
+    width: 690px;
+}
+.info td {
+    font-size: 18px;
+    text-align: center;
+    border-bottom: 1px solid #222;
+}
+.info th {
+    font-size: 18px;
+    text-align: center;
+    width: 300px;
+    border: solid;
+    border-color: #FFFFFF;
+    border-width: 1px 1px 0;
+    color: #FFFFFF;
+    background-color: #222;
+}
+.info #Name {
+    border-width: 0 1px 0 0;
+}
+.card {
+    width: 1000px;
+    margin: auto;
+    border: solid;
+    border-width: 5px;
+}

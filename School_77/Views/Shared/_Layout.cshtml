@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<style>
+    .navbar {
+        overflow: hidden;
+    }
+
+    .navbar-right{
+        padding-right: 45px;
+    }
+
+    .login {
+        font-size: 18px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        line-height: 20px;
+    }
+
+    .drpdwn {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        color: #FFFFFF;
+        background-color: rgba(0, 0, 0, 0);
+        text-align: center;
+        border: 0px;
+    }
+    select option {
+        background: rgb(51,51,51);
+    }
+    </style>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - School App</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="~/school.png" class="img-center" height="50" width="50" />
+                <a class="navbar-brand" href="/">School №77</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <form id="login-drop" class="login navbar-right" action="/Home">
+                    <select class="drpdwn" id="LoginID" name="LoginID" onchange="this.form.submit()">
+                        <option selected="selected" disabled="disabled">Пользователь</option>
+                        <option value="0">Администратор - #### #. #.</option>
+                        <option value="47">Родитель - Баженов И. А.</option>
+                        <option value="4">Ученик - Попова А. А.</option>
+                        <option value="44">Учитель - Баранов А. Н.</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Tomsk Polytechnic University</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

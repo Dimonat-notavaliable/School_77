@@ -1,0 +1,56 @@
+﻿@model School_77.Models.Parent
+@{ Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+
+@{
+    ViewBag.Title = "Информация";
+}
+<h2>Информация</h2>
+
+<div>
+    <h4>Родитель</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+    </dl>
+</div>
+<h3>Список детей</h3>
+@if (Model.Kids != null && Model.Kids.Any())
+{
+    <table class="table">
+        <tr>
+            <th>ФИО</th>
+            <th>Класс</th>
+        </tr>
+
+        @foreach (var item in Model.Kids.OrderBy(x => x.LastName))
+        {
+            <tr>
+                <td>
+                    @item.FullName
+                </td>
+                <td>
+                    @item.Course.Title
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <hr />
+    <p>
+        В школе не найдено детей c родителем @Model.Initials
+    </p>
+}
+<p>
+    @Html.ActionLink("Изменить", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Назад", "Index")
+</p>
+<link rel="stylesheet" href="~/Content/Parents.css">

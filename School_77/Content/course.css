@@ -1,0 +1,29 @@
+﻿th a {
+    color: #FFFFFF;
+}
+th a:hover {
+    color: lightblue;
+}
+th {
+    font-size: 15px;
+    font-weight: 600;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+td {
+    font-size: 15px;
+}
+.number {
+    text-align: center;
+    width: 30px;
+}
+input {
+    text-align: center;
+    font-size: 15px;
+    padding: .5em;
+    font-weight: 600;
+    color: #FFFFFF;
+    border: 1px solid #aaa;
+    border-radius: .5em;
+    background-color: rgba(0, 0, 0, 0.8);
+}

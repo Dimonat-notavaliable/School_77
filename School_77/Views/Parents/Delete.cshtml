@@ -1,0 +1,36 @@
+﻿@model School_77.Models.Parent
+@{ Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+
+@{
+    ViewBag.Title = "Удалить";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены что хотите удалить?</h3>
+<div>
+    <h4>Родитель</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Подтвердить" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>
+
+<link rel="stylesheet" href="~/Content/CUD.css">

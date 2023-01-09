@@ -1,0 +1,12 @@
+﻿input[type=submit] {
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+input[type=submit]:hover {
+    color: rgba(0, 0, 0, 0.8);
+    background-color: #FFFFFF;
+}
+
+select option {
+    background-color: white;
+}

@@ -1,0 +1,46 @@
+﻿@model School_77.Models.Person
+@if (Model == null)
+{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+else if (Model.GetType().ToString() == "School_77.Models.Person")
+{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+else if (Model.GetType().ToString().Contains("Parent"))
+{
+    Layout = "~/Views/Shared/_LayoutParent.cshtml";
+}
+else if (Model.GetType().ToString().Contains("Student"))
+{
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+else if (Model.GetType().ToString().Contains("Teacher"))
+{
+    Layout = "~/Views/Shared/_LayoutTeacher.cshtml";
+}
+@{
+    ViewBag.Title = "Главная страница";
+}
+
+<div class="jumbotron">
+    <h1>МБОУ СОШ №77</h1>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <h2>Добро пожаловать в "School №77"</h2>
+        <p>
+            Приложение позволяет обучающимся и их родителям
+            просматривать дневник успеваемости и расписание уроков, а учителям заполнять
+            журнал своего класса
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Новости</h2>
+        <p>
+            Хотите узнать больше? Переходите на наш сайт, где вы сможете найти  много полезной информации:
+            узнать об истории и традициях школы, наших достижениях, ознакомиться с нормативными документами ОУ
+        </p>
+        <p><a class="btn btn-default" href="http://www.school77.spb.ru">Ссылка &raquo;</a></p>
+    </div>
+</div>

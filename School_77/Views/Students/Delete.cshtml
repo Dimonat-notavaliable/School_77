@@ -1,0 +1,45 @@
+﻿@model School_77.Models.Student
+@{ Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+
+@{
+    ViewBag.Title = "Удалить";
+}
+
+<p class="error">@ViewBag.ErrorMessage</p>
+
+<h3>Вы уверены, что хотите удалить?</h3>
+<div>
+    <h4>Ученик</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <p>ФИО</p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.Title)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Подтвердить" class="btn btn-default" /> |
+            @Html.RouteLink("Назад", new { controller = "Course", action = "Index", id = Model.CourseID })
+        </div>
+    }
+</div>
+<link rel="stylesheet" href="~/Content/CUD.css">

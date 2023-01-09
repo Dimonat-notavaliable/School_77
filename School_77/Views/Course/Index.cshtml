@@ -1,0 +1,79 @@
+﻿@model School_77.ViewModels.CourseIndexData
+@{ 
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Классы";}
+
+<h2>Классы</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Класс</th>
+        <th>Классный руководитель</th>
+        <th>Специализация</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Courses)
+    {
+        string selectedRow = "";
+        if (item.ID == ViewBag.ID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Branch)
+            </td>
+            <td>
+                @Html.ActionLink("Ученики", "Index", new { id = item.ID }) |
+                @Html.ActionLink("Изменить", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@if (Model.Students != null)
+{
+    int number = 1;
+    <h3>Список учеников класса @Model.Students.ElementAt(0).Course.Title</h3>
+    <p>
+        @Html.ActionLink("Добавить", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>№</th>
+            <th>ФИО</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Students)
+        {
+            <tr>
+                <td class="number">
+                    <b>@number</b>
+                </td>
+                <td>
+                    @item.FullName
+                </td>
+                <td>
+                    @Html.RouteLink("Изменить", new { controller = "Students", action = "Edit", id = item.ID }, new { id = item.ID }) |
+                    @Html.RouteLink("Удалить", new { controller = "Students", action = "Delete", id = item.ID }, new { id = item.ID })
+                </td>
+            </tr>
+            number++;
+        }
+
+    </table>
+}
+<link rel="stylesheet" href="~/Content/course.css">
