@@ -1,4 +1,5 @@
 ﻿@model School_77.Models.Teacher
+@{ Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
 
 @{
     ViewBag.Title = "Изменить";
@@ -9,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Учитель: @Model.FullName</h4>
         <hr />
