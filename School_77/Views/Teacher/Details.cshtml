@@ -1,4 +1,5 @@
 ﻿@model School_77.Models.Teacher
+@{ Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
 
 @{
     ViewBag.Title = "Информация";
@@ -36,14 +37,14 @@
             <th>Классное руководство</th>
             <td>
                 @course
-        </td>
+            </td>
         </tr>
         <tr>
             <th>Преподаваемые предметы</th>
             <td>@subjects</td>
 
         </tr>
-</table>
+    </table>
 </div>
 <p>
     @Html.ActionLink("Назад", "Index")

@@ -1,19 +1,9 @@
 ﻿@model School_77.Models.Teacher
+@{ Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
 
 @{
     ViewBag.Title = "Удалить";
 }
-<style type="text/css">
-    input[type=submit] {
-        color: #FFFFFF;
-        background-color: rgba(0, 0, 0, 0.8);
-    }
-
-        input[type=submit]:hover {
-            color: rgba(0, 0, 0, 0.8);
-            background-color: #FFFFFF;
-        }
-</style>
 
 <h2>Удаление</h2>
 
@@ -29,7 +19,7 @@
         <dd>
             @Html.DisplayFor(model => model.FullName)
         </dd>
-        
+
         <dt>
             @Html.DisplayNameFor(model => model.Course.Title)
         </dt>
@@ -40,7 +30,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -49,3 +40,5 @@
         </div>
     }
 </div>
+
+<link rel="stylesheet" href="~/Content/CUD.css">

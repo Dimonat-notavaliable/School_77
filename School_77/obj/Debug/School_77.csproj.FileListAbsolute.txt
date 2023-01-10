@@ -175,3 +175,4 @@ D:\8K04\Практика\School_77\School_77\obj\Debug\School_77.csproj.CoreComp
 D:\8K04\Практика\School_77\School_77\obj\Debug\School_77.csproj.CopyComplete
 D:\8K04\Практика\School_77\School_77\obj\Debug\School_77.dll
 D:\8K04\Практика\School_77\School_77\obj\Debug\School_77.pdb
+D:\8K04\Практика\School_77\School_77\obj\Debug\School_77.csproj.AssemblyReference.cache
